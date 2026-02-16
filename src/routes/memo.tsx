@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "../components/button";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { BeanIcon, BeanOffIcon } from "lucide-react";
 
 export const Route = createFileRoute("/memo")({
@@ -17,7 +17,7 @@ function RouteComponent() {
   const [randomNumber, setRandomNumber] = useState(0);
   const [isBean, setIsBean] = useState(true);
 
-  const doubledRandomNumber = slowFunction(randomNumber);
+  const doubledRandomNumber = useMemo(() => {return slowFunction(randomNumber)}, [randomNumber]);
 
   return (
     <>

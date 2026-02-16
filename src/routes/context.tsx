@@ -1,11 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "../components/button";
+import { useContext } from "react"; 
+import { AppContext } from "../lib/contexts";
 
 export const Route = createFileRoute("/context")({
   component: RouteComponent,
 });
 
+
+ 
 function RouteComponent() {
+
+  const {setProfileIndex} = useContext(AppContext) 
+  
   return (
     <>
       <h2>useContext</h2>
@@ -29,7 +36,7 @@ function RouteComponent() {
         globalt tillgänglig och skriv logik som låter dig toggla värdet direkt
         härifrån.
       </p>
-      <Button onClick={() => {}}>Toggla profilbild</Button>
+      <Button onClick={() => setProfileIndex(prev => (prev === 0 ? 1 : 0))}>Toggla profilbild</Button>
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import profiles from "../lib/profiles";
 import Profile from "../components/profile";
 import NavLinkButton from "../components/nav-button";
+import { AppContext } from "../lib/contexts";
 
 export type Theme = "light" | "dark";
 
@@ -19,6 +20,7 @@ function RootComponent() {
   const profileName = profiles[profileIndex].name;
 
   return (
+    <AppContext value={{profileIndex, setProfileIndex}}>
     <div className="min-h-screen p-6 flex flex-col gap-6">
       <div className="flex justify-between border-b py-4">
         <Profile img={profileImg} name={profileName} />
@@ -45,5 +47,7 @@ function RootComponent() {
         <Outlet />
       </div>
     </div>
+    </AppContext>
+ 
   );
 }
